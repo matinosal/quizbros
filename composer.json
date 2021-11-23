@@ -1,5 +1,7 @@
 {
-    "require": {
-        "mfacenet/hello-world": "v1.*"
+    "autoload": {
+        "psr-4": {
+            "Classes\\Controllers\\":"public/controllers/"
+        }
     }
 }
