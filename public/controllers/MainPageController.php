@@ -6,12 +6,13 @@
 
     class MainPageController extends Controller{
         
-        public function getData() : array{
+        protected function getData() : array{
             return [];
         }
 
         public function index() : void{
             $this->render('main-page',[
+                'title'     => 'QuizBros - Strona główna',
                 'scripts'   => $this->loadScripts(),
                 'styles'    => $this->loadStyles(['style']),
             ]);
