@@ -9,11 +9,21 @@ class ComposerStaticInitcbd45e0ccb065a0cc73d783f356a991f
     public static $prefixLengthsPsr4 = array (
         'C' => 
         array (
+            'Classes\\Models\\' => 15,
+            'Classes\\Handlers\\' => 17,
             'Classes\\Controllers\\' => 20,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Classes\\Models\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/public/models',
+        ),
+        'Classes\\Handlers\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/public/handlers',
+        ),
         'Classes\\Controllers\\' => 
         array (
             0 => __DIR__ . '/../..' . '/public/controllers',

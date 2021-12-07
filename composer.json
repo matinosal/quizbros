@@ -1,7 +1,9 @@
 {
     "autoload": {
         "psr-4": {
-            "Classes\\Controllers\\":"public/controllers/"
+            "Classes\\Controllers\\":"public/controllers/",
+            "Classes\\Models\\":"public/models/",
+            "Classes\\Handlers\\":"public/handlers/"
         }
     }
 }

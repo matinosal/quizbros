@@ -5,10 +5,6 @@
     use Classes\Controllers\Controller;
 
     class MainPageController extends Controller{
-        
-        protected function getData() : array{
-            return [];
-        }
 
         public function index() : void{
             $this->render('main-page',[

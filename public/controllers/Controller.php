@@ -3,16 +3,29 @@
 namespace Classes\Controllers;
 
     abstract class Controller{
-
-        abstract protected function getData() : array;
+        private $method;
         
+        public function __construct() {
+            $this->method = $_SERVER['REQUEST_METHOD'];
+        }
+
+        protected function isPost() : bool{
+            return $this->method == 'POST';
+        }
+
+        protected function isGet() : bool{
+            return $this->method == 'GET';
+        } 
+
         protected function loadScripts(array $files = []) : string{
             return $this->loadFiles($files,'js');
         }
+
         protected function loadStyles(array $files = [])  : string{
             return $this->loadFiles($files,'css');
         }
-        private function loadFiles(array $files,string $type){
+
+        private function loadFiles(array $files,string $type) : string{
             if($type == "css")
                 $token = "<link rel='stylesheet' href='public/assets/css/x.css' />";
             
@@ -28,7 +41,7 @@ namespace Classes\Controllers;
             }
             return $html;
         }
-        protected function render(string $template = null, array $data = []){
+        protected function render(string $template = null, array $data = []) : void {
             $templatePath = 'public/views/'.$template.'.php';
             $output = 'File not found.';
             if(file_exists($templatePath)){

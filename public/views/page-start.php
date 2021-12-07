@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/3c100d7e83.js" crossorigin="anonymous"></script>
     
-    <title><?php echo $data['title']; ?></title>
-    <?php echo $data['styles']; ?>
-    <?php echo $data['scripts']; ?>
+    <title><?php echo $title; ?></title>
+    <?php echo $styles; ?>
+    <?php echo $scripts; ?>
 </head>
 <body>
