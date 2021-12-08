@@ -2,19 +2,24 @@
     namespace Classes\Models;
 
     class User{
+        private int $uid;
         private string $login;
         private string $password;
         private string $desc;
         private string $image;
 
-        public function __construct($login,$password,$desc,$image)
+        public function __construct($uid,$login,$password,$desc,$image)
         {
+            $this->uid = $uid;
             $this->login = $login;
             $this->password = $password;
             $this->desc = $desc;
             $this->image = $image;
         }
 
+        public function getUid() : int {
+            return $this->uid;
+        }
         public function getLogin() : string{
             return $this->login;
         }

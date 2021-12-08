@@ -57,6 +57,7 @@ body{
 }
 .header__icon{
     font-size:1.7em;
+    text-align: center;
     padding:20px;
     color:black;
 }

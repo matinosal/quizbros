@@ -4,6 +4,7 @@
 
     use Classes\Controllers\Controller;
     use Classes\Handlers\ErrorHandler;
+    use Classes\Handlers\CookieHandler;
     use Classes\Models\UserRepository;
     use Classes\Models\User;
 
@@ -11,16 +12,10 @@ class SecurityController extends Controller{
 
         public function __construct()
         {
-            $this->err = new ErrorHandler();
-            $this->userRepository = new UserRepository();
             parent::__construct();
+            $this->userRepository = new UserRepository();
         }
-        //pobranie z bazy usera o takim mailu
-        //stworzenie obiektu user jesli istnieje w bazie
-        //sprawdzenie hasla
-        //jesli sa bledy to zbieranie info o nich
-        //wyswietlenie strony login z bledem
-        //przekierowanie na strone glowna (zrobienie ciasteczka o poprawnym loginie)
+       
         public function login() : void{
             if($this->isPost() && !$this->checkLogin()){
                 $user = $this->userRepository->getUser($_POST['email']);
@@ -28,6 +23,7 @@ class SecurityController extends Controller{
                 if($user == null || $user?->getPassword() != $_POST['password'])
                     $this->err->raise("Błędny email lub hasło");
                 else{
+                    $this->cookie->setLoggedUser($user->getUid());
                     header("Location: http://".$_SERVER['HTTP_HOST']."/");          
                 }
                 
@@ -41,7 +37,7 @@ class SecurityController extends Controller{
             ]);
         }
 
-        private function checkLogin() : bool { // '' string len 0
+        private function checkLogin() : bool {
             $email = $_POST['email'] ?? "";
             $password = $_POST['password'] ?? ""; 
             if($email ==  "")

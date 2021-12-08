@@ -10,7 +10,11 @@
         {
             $this->dbref = new DBHandler();
         }
-        public function getUser($email) : User{
-            return new User('test','testp','testowy opis','test.jpg');
+        public function getUser(string $email) : User{
+            return new User(1,'test','testp','testowy opis','test.jpg');
+        }
+        public function getUserByUid(int $uid) : User{
+            //kwerenda do bazy 
+            return new User(1,'test','testp','testowy opis','test.jpg');
         }
     }

@@ -2,11 +2,18 @@
 
 namespace Classes\Controllers;
 
-    abstract class Controller{
+use Classes\Handlers\CookieHandler;
+use Classes\Handlers\ErrorHandler;
+
+class Controller{
         private $method;
-        
+        protected ErrorHandler $err;
+        protected CookieHandler $cookie;
+
         public function __construct() {
             $this->method = $_SERVER['REQUEST_METHOD'];
+            $this->err = new ErrorHandler();
+            $this->cookie = new CookieHandler();
         }
 
         protected function isPost() : bool{
