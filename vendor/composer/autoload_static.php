@@ -10,6 +10,7 @@ class ComposerStaticInitcbd45e0ccb065a0cc73d783f356a991f
         'C' => 
         array (
             'Classes\\Models\\' => 15,
+            'Classes\\Helpers\\' => 16,
             'Classes\\Handlers\\' => 17,
             'Classes\\Controllers\\' => 20,
         ),
@@ -19,6 +20,10 @@ class ComposerStaticInitcbd45e0ccb065a0cc73d783f356a991f
         'Classes\\Models\\' => 
         array (
             0 => __DIR__ . '/../..' . '/public/models',
+        ),
+        'Classes\\Helpers\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/public/helpers',
         ),
         'Classes\\Handlers\\' => 
         array (

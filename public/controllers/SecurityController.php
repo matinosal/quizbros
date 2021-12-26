@@ -5,6 +5,7 @@
     use Classes\Controllers\Controller;
     use Classes\Handlers\ErrorHandler;
     use Classes\Handlers\CookieHandler;
+    use Classes\Handlers\SessionHandler;
     use Classes\Models\UserRepository;
     use Classes\Models\User;
 
@@ -23,8 +24,9 @@ class SecurityController extends Controller{
                 if($user == null || $user?->getPassword() != $_POST['password'])
                     $this->err->raise("Błędny email lub hasło");
                 else{
-                    $this->cookie->setLoggedUser($user->getUid());
-                    header("Location: http://".$_SERVER['HTTP_HOST']."/");          
+                    $this->session->setLoggedUser($user->getUid());
+                    header("Location: http://".$_SERVER['HTTP_HOST']."/");
+                    die();          
                 }
                 
             }
@@ -33,6 +35,7 @@ class SecurityController extends Controller{
                 'title'             => 'QuizBros - login',
                 'scripts'           => $this->loadScripts(['auth.js']),
                 'styles'            => $this->loadStyles(['style']),
+                'user_logged'       => false,
                 'errorMessages'     => $this->err->getErrors()
             ]);
         }

@@ -11,13 +11,12 @@ class MainPageController extends Controller{
         private $userRepository;
 
         public function index() : void{
-            $logged = $this->cookie->isLogged();
-
             $this->userRepository = new UserRepository();
+            $logged = $this->session->isLogged();
+            $this->user = $logged ? $this->getLoggedUser() : null;
+            
 
-            if($logged){
-                $this->user = $this->getLoggedUser();
-            }
+            
             $this->render('main-page',[
                 'title'         => 'QuizBros - Strona główna',
                 'scripts'       => $this->loadScripts(),
@@ -28,7 +27,7 @@ class MainPageController extends Controller{
         }
 
         private function getLoggedUser() : User{
-            $uid = $this->cookie->getLoggedUid();
+            $uid = $this->session->getLoggedUid();
             $user = $this->userRepository->getUserByUid($uid);
             return $user;
         }

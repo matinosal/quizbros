@@ -3,6 +3,7 @@
 namespace Classes\Controllers;
 
 use Classes\Handlers\CookieHandler;
+use Classes\Handlers\SessionHandler;
 use Classes\Handlers\ErrorHandler;
 
 class Controller{
@@ -13,7 +14,7 @@ class Controller{
         public function __construct() {
             $this->method = $_SERVER['REQUEST_METHOD'];
             $this->err = new ErrorHandler();
-            $this->cookie = new CookieHandler();
+            $this->session = new SessionHandler();
         }
 
         protected function isPost() : bool{

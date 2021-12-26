@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Classes\\Models\\' => array($baseDir . '/public/models'),
+    'Classes\\Helpers\\' => array($baseDir . '/public/helpers'),
     'Classes\\Handlers\\' => array($baseDir . '/public/handlers'),
     'Classes\\Controllers\\' => array($baseDir . '/public/controllers'),
 );
