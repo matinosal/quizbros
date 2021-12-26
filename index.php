@@ -8,5 +8,6 @@
     Router::get('', 'MainPageController');
     Router::get('login', 'SecurityController');
     Router::get('register', 'SecurityController');
+    Router::get('profile', 'UserController');
     
     Router::run($path);  

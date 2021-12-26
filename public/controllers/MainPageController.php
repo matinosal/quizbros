@@ -13,7 +13,7 @@ class MainPageController extends Controller{
         public function index() : void{
             $this->userRepository = new UserRepository();
             $logged = $this->session->isLogged();
-            $this->user = $logged ? $this->getLoggedUser() : null;
+            $user = $logged ? $this->getLoggedUser() : null;
             
 
             
@@ -22,7 +22,7 @@ class MainPageController extends Controller{
                 'scripts'       => $this->loadScripts(),
                 'styles'        => $this->loadStyles(['style']),
                 'user_logged'   => $logged,
-                'user'          => $this->user
+                'user'          => $user
             ]);
         }
 
