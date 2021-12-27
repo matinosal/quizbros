@@ -53,14 +53,10 @@ class SecurityController extends Controller{
             return $this->err->isError();
         }
 
-        //sprawdzenie czy w bazie znajduje sie juz taki email
-        //jesli nie to wysylam nowego usera do bazy
-        //przekierowanie na strone glowna z ciasteczkiem 
-        //jesli cos jest jednak nie tak to pokazywanie bledow na stronie
         public function register() : void{
             if($this->isPost())
                 $this->addNewUser($_POST);
-                
+
             $this->render('register',[
                 'title'         => 'QuizBros - register',
                 'scripts'       => $this->loadScripts(['auth']),
@@ -71,7 +67,7 @@ class SecurityController extends Controller{
         }
 
         private function addNewUser($data) : void{
-
+            #trzeba bedzie sprawdzic tylko czy taki username wystepuje juz w bazie
             if(count($data) < 4){
                 $this->err->raise("Nie wypełniono poprawnie wszystkich pól");
                 return;
