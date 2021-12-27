@@ -15,8 +15,6 @@ class MainPageController extends Controller{
             $logged = $this->session->isLogged();
             $user = $logged ? $this->getLoggedUser() : null;
             
-
-            
             $this->render('main-page',[
                 'title'         => 'QuizBros - Strona główna',
                 'scripts'       => $this->loadScripts(),
@@ -25,7 +23,12 @@ class MainPageController extends Controller{
                 'user'          => $user
             ]);
         }
-
+        public function logout() : void{
+            $this->session->clear();
+            $this->cookie->clear();
+            header("Location: http://".$_SERVER['HTTP_HOST']."/");
+            die();  
+        }
         private function getLoggedUser() : User{
             $uid = $this->session->getLoggedUid();
             $user = $this->userRepository->getUserByUid($uid);

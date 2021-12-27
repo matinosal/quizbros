@@ -15,6 +15,7 @@ class Controller{
             $this->method = $_SERVER['REQUEST_METHOD'];
             $this->err = new ErrorHandler();
             $this->session = new SessionHandler();
+            $this->cookie = new CookieHandler();
         }
 
         protected function isPost() : bool{

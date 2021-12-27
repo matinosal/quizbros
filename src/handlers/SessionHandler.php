@@ -20,4 +20,8 @@
         public function getLoggedUid() : int {
             return intval($this->data['uid']);
         }
+
+        public function clear() : void {
+            session_destroy();
+        }
     }

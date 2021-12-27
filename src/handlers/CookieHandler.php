@@ -21,4 +21,10 @@
         public function getLoggedUid() : int {
             return intval($this->cookies['user_logged']);
         }
+        public function clear() : void{
+            /*TODO 
+                jak będę używać jakiś cookies to można wtedy je usunąć tutaj w tej funkcji
+            */
+            return;
+        }
     }

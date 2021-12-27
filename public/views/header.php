@@ -21,6 +21,12 @@
                         <span class="header__desc"></span>
                     </div>
                 </a>
+                <a href="/logout" class="header__link">
+                    <div class="header__icon">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="header__desc"></span>
+                    </div>
+                </a>
             </div>
         <?php }
             else{ ?>
