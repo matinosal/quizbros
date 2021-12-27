@@ -4,7 +4,7 @@
 
     use Classes\Controllers\Controller;
     use Classes\Models\User;
-    use Classes\Models\UserRepository;
+    use Classes\Repositories\UserRepository;
 
 class MainPageController extends Controller{
         

@@ -3,7 +3,7 @@
     namespace Classes\Controllers;
 
 use Classes\Helpers\UserRedirect;
-use Classes\Models\UserRepository;
+use Classes\Repositories\UserRepository;
 
 class UserController extends Controller{
 

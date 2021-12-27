@@ -1,6 +1,10 @@
 <?php
+
     namespace Classes\Handlers;
-    class DBHandler{
+
+use PDOException;
+
+class DBHandler{
         private \PDO $conn;
         private string $host;
         private int $port;
@@ -11,14 +15,29 @@
         //host=sheep port=5432 dbname=test user=lamb password=bar
         public function __construct()
         {
-            $this->host = HOST;
-            $this->port = PORT;
-            $this->dbname = DBNAME;
-            $this->user = USER;
-            $this->passwd = PASSW;
+            $this->host = \HOST;
+            $this->port = \PORT;
+            $this->dbname = \DBNAME;
+            $this->user = \USER;
+            $this->passwd = \PASSW;
         }
-        public function connect(){
-            $conn_config = "pgsql:host=$this->host port=$this->port dbname=$this->dbname user=$this->user password=$this->passwd";
-            $this->conn = new \PDO($conn_config);
+        public function connect() : \PDO{
+            if(isset($this->conn))
+                return $this->conn;
+            try{
+                $conn_config = "pgsql:host=$this->host port=$this->port dbname=$this->dbname";
+                $this->conn = new \PDO(
+                    $conn_config,
+                    $this->user,
+                    $this->passwd,
+                    ["sslmode" => "prefer"]
+                );
+
+                $this->conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+                return $this->conn;
+            }
+            catch(PDOException $e){
+                die("Connection failed". $e->getMessage());
+            }
         }
     }

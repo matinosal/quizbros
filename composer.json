@@ -1,10 +1,15 @@
 {
     "autoload": {
         "psr-4": {
-            "Classes\\Controllers\\":"public/controllers/",
-            "Classes\\Models\\":"public/models/",
-            "Classes\\Handlers\\":"public/handlers/",
-            "Classes\\Helpers\\":"public/helpers/"
-        }
+            "Classes\\Controllers\\":"src/controllers/",
+            "Classes\\Models\\":"src/models/",
+            "Classes\\Handlers\\":"src/handlers/",
+            "Classes\\Helpers\\":"src/helpers/",
+            "Classes\\Helpers\\Enums\\":"src/helpers/enums",
+            "Classes\\Repositories\\":"src/repositories/"
+
+        },
+        "classmap": ["Router.php"],
+        "files": ["config.php"]
     }
 }
