@@ -12,7 +12,7 @@
                     <?php }?>
                     <input placeholder="E-mail" name='email' type="text" class="security-form__input">
                     <input placeholder="Haslo" name='password'type="password" class="security-form__input">
-                    <input type="submit" value="Wchodzę!" class="security-form__submit">
+                    <div class="security-form__submit">Wchodzę</div>
                 </form>
             </div>
         </div>

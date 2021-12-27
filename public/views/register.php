@@ -15,10 +15,10 @@
                     <input name="password" placeholder="Hasło" type="password" class="security-form__input">
                     <input name="email" placeholder="E-mail" type="text" class="security-form__input">
                     <div class="checkbox-container">
-                        <input name="consent" type="checkbox" class="security-form__checkbox">
+                        <input name="consent" type="checkbox" value="accepted" class="security-form__checkbox">
                         <p class="checkbox-container__desc">Pozwalam na przetwarzanie moich danych osobowych</p>
                     </div>
-                    <input type="submit" value="Wchodzę!" class="security-form__submit">
+                    <div class="security-form__submit">Wchodzę</div>
                 </form>
             </div>
         </div>

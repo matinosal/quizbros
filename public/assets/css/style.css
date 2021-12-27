@@ -186,7 +186,11 @@ body{
 }
 .security-form__submit{
     margin-top:20px;
-    padding:10px;
+    padding:10px 20px;
+    background-color: white;
+    border: 1px black solid;
+    border-radius:30px;
+    cursor: pointer;
 }
 .security-form__heading{
     margin-top:20px;
