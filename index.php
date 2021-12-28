@@ -9,4 +9,5 @@
     Router::get('register', 'SecurityController');
     Router::get('profile', 'UserController');
     
+    Router::post('profileEdit','UserController');
     Router::run($path);  

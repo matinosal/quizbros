@@ -35,7 +35,7 @@ class SecurityController extends Controller{
 
             $this->render('login',[
                 'title'             => 'QuizBros - login',
-                'scripts'           => $this->loadScripts(['auth.js']),
+                'scripts'           => $this->loadScripts(['auth']),
                 'styles'            => $this->loadStyles(['style']),
                 'user_logged'       => false,
                 'errorMessages'     => $this->err->getErrors()
@@ -76,7 +76,7 @@ class SecurityController extends Controller{
             $login = $data['login'] ?? "";
             $passw = $data['password'] ?? "";
             $email = $data['email'] ?? "";
-            $consent = $data['consent'] ?? true;
+            $consent = $data['consent'] ?? "";
             if(!$this->checkRegisterFields($login,$passw,$email,$consent))
                 return;
 

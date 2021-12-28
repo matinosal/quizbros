@@ -1,5 +1,5 @@
 <?php require_once "./public/views/page-start.php"; ?>
-<?php require_once "./public/views/header.php"; ?>
+<?php require_once "./public/views/components/header.php"; ?>
 <div class="row">
     <div class="page-padding">
         <div class="logo-holder">

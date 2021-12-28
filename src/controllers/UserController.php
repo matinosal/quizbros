@@ -15,7 +15,7 @@ class UserController extends Controller{
         $user = $userRepository->getUserByUid($this->session->getLoggedUid());
         $this->render('profile',[
             'title'         => 'QuizBros - title',
-            'scripts'       => $this->loadScripts(),
+            'scripts'       => $this->loadScripts(['profile']),
             'styles'        => $this->loadStyles(['style']),
             'user_logged'   => true,
             'user'          => $user
@@ -34,5 +34,18 @@ class UserController extends Controller{
             'user_logged'   => true,
             'user'          => $user
         ]);
+    }
+
+    public function profileEdit(){
+        $userRepository = new UserRepository();
+
+        if(isset($_POST['description'])){
+            $description = $_POST['description'];
+            $userID = $this->session->getLoggedUid();
+            $userRepository->setNewDescription($userID,$description);
+        }
+        $user = $userRepository->getUserByUid($this->session->getLoggedUid());
+        var_dump($user);
+        die();
     }
 }

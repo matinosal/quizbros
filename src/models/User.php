@@ -5,16 +5,16 @@
         private int $uid;
         private string $login;
         private string $password;
-        private string $desc;
-        private string $image;
+        private string $description;
+        private string $imageSrc;
 
-        public function __construct($uid,$login,$password,$desc,$image)
+        public function __construct($uid,$login,$password,$description,$imageSrc)
         {
             $this->uid = $uid;
             $this->login = $login;
             $this->password = $password;
-            $this->desc = $desc;
-            $this->image = $image;
+            $this->description = $description;
+            $this->imageSrc = $imageSrc;
         }
 
         public function getUid() : int {
@@ -28,11 +28,11 @@
             return $this->password;
         }
 
-        public function getDesc() : string{
-            return $this->desc;
+        public function getDescription() : string{
+            return $this->description;
         }
 
         public function getImage() : string{
-            return $this->image;
+            return $this->imageSrc;
         }
     }
