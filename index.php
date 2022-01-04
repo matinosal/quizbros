@@ -8,6 +8,7 @@
     Router::get('login', 'SecurityController');
     Router::get('register', 'SecurityController');
     Router::get('profile', 'UserController');
+    Router::get('quiz','QuizController');
     
     Router::post('profileEdit','UserController');
     Router::run($path);  

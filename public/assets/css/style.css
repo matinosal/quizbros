@@ -133,9 +133,12 @@ body{
     display: flex;
     flex-direction: row;
     margin-top: 30px;
+    flex-wrap: wrap;
 }
 .quizblock-outer{
     width:50%;
+}
+.quizblock-inner{
     padding: 10px;
 }
 .quizblock{
@@ -263,6 +266,11 @@ body{
     display: flex;
     flex-direction: column;
 }
+.quiz-outer{
+    width:100%;
+    margin-top: 50px;
+    padding: 10px;
+}
 .quiz{
     display: flex;
     flex-direction: column;
@@ -280,4 +288,34 @@ body{
 }
 .quiz-details{
     display: none;
+}
+.main-quiz{
+    padding:20px;
+}
+
+/* signle quiz page */
+.main-quiz__question{
+    width:100%;
+    margin:50px 0px;
+}
+.question__content{
+    text-align: center;
+    font-size:2em;
+    font-weight:bold;
+}
+.main-quiz__answers{
+    width:100%;
+    margin-top:100px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.answer-outer{
+    width:50%;
+}
+.answer-inner{
+    padding: 20px;
+}
+.answer{
+    padding: 20px;
 }

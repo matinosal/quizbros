@@ -27,5 +27,24 @@
 
             return $quizes;
         }
+
+        public function getQuizByid(int $quid) : Quiz{
+            $query = $this->dbref->connect()->prepare(
+                "SELECT * FROM public.quizes AS q INNER JOIN public.categories AS c ON q.category_id = c.id_category WHERE id_quiz=:quid"
+            );
+            $query->bindParam(":quid",$quid,\PDO::PARAM_INT);
+            $query->execute();
+
+            $result = $query->fetch(\PDO::FETCH_ASSOC);
+            if(!$result)
+                die("DB connection err. Please try again :(");
+
+            return new Quiz(
+                    $result['id_quiz'],
+                    $result['name'],
+                    $result['quiz_description'],
+                    $result['category_name']
+                );
+        }
     
     }

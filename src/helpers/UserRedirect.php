@@ -10,4 +10,8 @@
                 die();  
             }
         }
+        static public function redirectToMainPage() : void {
+            header("Location: http://".$_SERVER['HTTP_HOST']."/");
+            die();
+        }
     }

@@ -36,10 +36,10 @@ class Controller{
 
         private function loadFiles(array $files,string $type) : string{
             if($type == "css")
-                $token = "<link rel='stylesheet' href='public/assets/css/x.css' />";
+                $token = "<link rel='stylesheet' href='../public/assets/css/x.css' />";
             
             elseif($type == "js")
-                $token = "<script src='public/assets/js/x.js'></script>";
+                $token = "<script src='../public/assets/js/x.js'></script>";
 
             else
                 return '';
