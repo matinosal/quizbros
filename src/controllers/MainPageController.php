@@ -4,7 +4,8 @@
 
     use Classes\Controllers\Controller;
     use Classes\Models\User;
-    use Classes\Repositories\UserRepository;
+use Classes\Repositories\QuizRepository;
+use Classes\Repositories\UserRepository;
 
 class MainPageController extends Controller{
         
@@ -12,6 +13,9 @@ class MainPageController extends Controller{
 
         public function index() : void{
             $this->userRepository = new UserRepository();
+            $this->quizRepository = new QuizRepository();
+
+            $quizes = $this->quizRepository->getQuizes(6);
             $logged = $this->session->isLogged();
             $user = $logged ? $this->getLoggedUser() : null;
             
@@ -20,7 +24,8 @@ class MainPageController extends Controller{
                 'scripts'       => $this->loadScripts(),
                 'styles'        => $this->loadStyles(['style']),
                 'user_logged'   => $logged,
-                'user'          => $user
+                'user'          => $user,
+                'quizes'        => $quizes
             ]);
         }
         public function logout() : void{

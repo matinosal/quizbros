@@ -35,7 +35,7 @@
             </div>
             <div class="user-quizes outline-purple">
                 <span class="user-quizes__heading">Najpopularniejszy quiz</span>
-                <?php require_once  "./public/views/components/quiz.php"; ?>
+                <?php require_once  "./public/views/components/quiz-edit.php"; ?>
             </div>
         </div>
     </div>

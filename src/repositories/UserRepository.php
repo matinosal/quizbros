@@ -5,6 +5,7 @@
     use Classes\Models\User;
 
     class UserRepository extends Repository{
+
         public function getUser(string $email) : ?User{
             $query = $this->dbref->connect()->prepare(
                 "SELECT * FROM public.users where email=:email"
@@ -14,16 +15,16 @@
 
             $result = $query->fetch();
             if(!$result)
-                return null;
+                die("DB connection err. Please try again :(");
             return new User(
                 $result['id'],
                 $result['username'],
                 $result['password'],
-                $result['email'],
-                $result['description']);
+                $result['description'],
+                $result['image_src']);
         }
+
         public function getUserByUid(int $uid) : ?User{
-            //kwerenda do bazy 
             $query = $this->dbref->connect()->prepare(
                 "SELECT * FROM public.users WHERE id=:uid"
             );
@@ -33,14 +34,15 @@
             $result = $query->fetch(\PDO::FETCH_ASSOC);
             if(!$result)
                 die("DB connection err. Please try again :(");
+
             return new User(
                 $result['id'],
                 $result['username'],
                 $result['password'],
                 $result['description'],
-                '' // na ten moment bez zdjecia
-            );
+                $result['image_src']);
         }
+
         public function addNewUser(string $login,string $passw,string $email){
             $query = $this->dbref->connect()->prepare(
                 "INSERT INTO public.users(username,password,email,description) values(:login,:passw,:email,'') RETURNING id"
@@ -53,6 +55,7 @@
             $result = $query->fetch(\PDO::FETCH_ASSOC);
             return $result['id'] ?: 0;
         }
+        
         public function setNewDescription(int $uid, $userDescription){
             $query = $this->dbref->connect()->prepare(
                 "UPDATE public.users set description=:description where id=:uid"

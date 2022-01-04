@@ -23,36 +23,7 @@
     <div class="page-padding">
         <div class="quizholder">
             <p class="quizholder__heading">Przeglądaj popularne quizy</p>
-            <div class="quizblock-container">
-                <div class="quizblock-outer">
-                    <div class="quizblock">
-                        <div class="quizblock-top">
-                            <div class="quizblock__image">
-                                <!--<img src="" alt="picture"/>-->
-                            </div>
-                            <div class="quizblock__title">Przykładowy quiz 1</div>
-                        </div>
-                        <div class="quizblock__description">Opis tego quizu podany przez autora jeśli jegobędzie za dużo to wtedy pojawiają się wielokropek,żeby było wiadomo, że jest tego jeszcze więcej. Ale nie ograniczamy bloku do konkretnych wysokości. Będzie to w stylu masonry grid.</div>
-                        <div class="quizblock__tags">
-                            Kategoria: <span class="quizblock__tag">Ogólne</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="quizblock-outer">
-                    <div class="quizblock">
-                        <div class="quizblock-top">
-                            <div class="quizblock__image">
-                                <!--<img src="" alt="picture"/>-->
-                            </div>
-                            <div class="quizblock__title">Przykładowy quiz 1</div>
-                        </div>
-                        <div class="quizblock__description">Opis tego quizu podany przez autora jeśli jegobędzie za dużo to wtedy pojawiają się wielokropek,żeby było wiadomo, że jest tego jeszcze więcej. Ale nie ograniczamy bloku do konkretnych wysokości. Będzie to w stylu masonry grid.</div>
-                        <div class="quizblock__tags">
-                            Kategoria: <span class="quizblock__tag">Ogólne</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php require_once "./public/views/components/quiz-block.php"; ?>
         </div>
     </div>
 </div>

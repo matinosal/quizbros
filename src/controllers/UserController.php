@@ -14,7 +14,7 @@ class UserController extends Controller{
         $userRepository = new UserRepository();
         $user = $userRepository->getUserByUid($this->session->getLoggedUid());
         $this->render('profile',[
-            'title'         => 'QuizBros - title',
+            'title'         => 'QuizBros - Twój profil ',
             'scripts'       => $this->loadScripts(['profile']),
             'styles'        => $this->loadStyles(['style']),
             'user_logged'   => true,
