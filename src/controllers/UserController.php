@@ -1,10 +1,10 @@
 <?php 
 
     namespace Classes\Controllers;
-    
-    use Classes\Controllers\Controller;
-    use Classes\Helpers\UserRedirect;
-    use Classes\Repositories\UserRepository;
+
+use Classes\Helpers\UserRedirect;
+use Classes\Repositories\QuizRepository;
+use Classes\Repositories\UserRepository;
 
 class UserController extends Controller{
 
@@ -13,28 +13,21 @@ class UserController extends Controller{
     public function profile(){
         UserRedirect::redirectIfNotLogged($this->session);
         $userRepository = new UserRepository();
-        $user = $userRepository->getUserByUid($this->session->getLoggedUid());
+        $quizRepository = new QuizRepository();
+
+        $userId = $this->session->getLoggedUid();
+        $user = $userRepository->getUserByUid($userId);
+        $quizes = $quizRepository->getUserQuizes($userId,1);
+
         $this->render('profile',[
             'title'         => 'QuizBros - Twój profil ',
             'scripts'       => $this->loadScripts(['profile']),
             'styles'        => $this->loadStyles(['style']),
             'user_logged'   => true,
-            'user'          => $user
+            'user'          => $user,
+            'quizes'        => $quizes
         ]);
 
-    }
-
-    public function quizes(){
-        UserRedirect::redirectIfNotLogged($this->session);
-        $userRepository = new UserRepository();
-        $user = $userRepository->getUserByUid($this->session->getLoggedUid());
-        $this->render('quizes',[
-            'title'         => 'QuizBros - title',
-            'scripts'       => $this->loadScripts(),
-            'styles'        => $this->loadStyles(['style']),
-            'user_logged'   => true,
-            'user'          => $user
-        ]);
     }
 
     public function profileEdit(){

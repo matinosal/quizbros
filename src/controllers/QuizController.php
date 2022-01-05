@@ -3,7 +3,8 @@
     namespace Classes\Controllers;
 
     use Classes\Controllers\Controller;
-    use Classes\Helpers\UserRedirect;
+use Classes\Helpers\Enums\QuizEnum;
+use Classes\Helpers\UserRedirect;
     use Classes\Models\Question;
     use Classes\Repositories\QuestionRepository;
     use Classes\Repositories\UserRepository;
@@ -42,6 +43,27 @@ class QuizController extends Controller{
         ]);
     }
 
+    public function quizes(){
+        UserRedirect::redirectIfNotLogged($this->session);
+        $userRepository = new UserRepository();
+        $quizRepository = new QuizRepository();
+        $user = $userRepository->getUserByUid($this->session->getLoggedUid());
+
+        $quizes =  $quizRepository->getUserQuizes($user->getUid());
+        if(empty($quizes))
+            $message[] = QuizEnum::NoQuizes;
+
+        $this->render('quizes',[
+            'title'         => 'Quiz - Twoje Quizy',
+            'scripts'       => $this->loadScripts(),
+            'styles'        => $this->loadStyles(['style']),
+            'user_logged'   => true,
+            'user'          => $user ?? null,
+            'quizes'        => $quizes,
+            'message'       => $message ?? [],
+        ]);
+    }
+
     public function getQuestion() : void {
         if(!isset($_POST['id'])|| !isset($_POST['order']))
             die();
@@ -61,7 +83,7 @@ class QuizController extends Controller{
         $answers = array_map(function($obj){
             return $obj->getContent();
         },$question->getAnswers());
-        
+
         echo json_encode([
             'question'      => $question->getContent(),
             'answers'       => $answers,

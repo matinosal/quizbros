@@ -5,10 +5,14 @@
     
     Router::get('', 'MainPageController');
     Router::get('logout', 'MainPageController');
+
     Router::get('login', 'SecurityController');
     Router::get('register', 'SecurityController');
+
     Router::get('profile', 'UserController');
+    
     Router::get('quiz','QuizController');
+    Router::get('quizes','QuizController');
     
     Router::post('profileEdit','UserController');
     Router::post('getQuestion',"QuizController");

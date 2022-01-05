@@ -342,3 +342,6 @@ body{
 .previous-question{
     visibility: hidden;
 }
+.user-quizes-container{
+    width:100%;
+}

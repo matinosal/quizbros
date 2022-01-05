@@ -6,7 +6,7 @@
         private string $login;
         private string $password;
         private string $description;
-        private string $imageSrc;
+        private ?string $imageSrc;
 
         public function __construct($uid,$login,$password,$description,$imageSrc)
         {
@@ -32,7 +32,7 @@
             return $this->description;
         }
 
-        public function getImage() : string{
+        public function getImage() : ?string{
             return $this->imageSrc;
         }
     }

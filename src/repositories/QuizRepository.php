@@ -3,7 +3,7 @@
     use Classes\Repositories\Repository;
     use Classes\Handlers\DBHandler;
     use Classes\Models\Quiz;
-
+    use Classes\Helpers\Enums\QuizEnum;
     class QuizRepository extends Repository{
     
         public function getQuizes(int $limit) : array{
@@ -15,17 +15,25 @@
             if(!$query->rowCount())
                 die("DB connection err. Please try again :(");
 
-            $quizes = [];
-            while( ($result = $query->fetch()) ){
-                $quizes[] = new Quiz(
-                    $result['id_quiz'],
-                    $result['name'],
-                    $result['quiz_description'],
-                    $result['category_name']
-                );
-            }
+            return $this->createQuizObjects($query);
+            
+        }
 
-            return $quizes;
+        public function getUserQuizes(int $id, $limit = QuizEnum::NoLimit){
+            $limitQuery = "";
+            if($limit != QuizEnum::NoLimit)
+                $limitQuery = "LIMIT $limit";
+                
+            $query = $this->dbref->connect()->prepare(
+                "SELECT * FROM public.quizes as q inner join public.categories as c on q.category_id = c.id_category where q.user_id=:id $limitQuery"
+            );
+            $query->bindParam(":id",$id,\PDO::PARAM_INT);
+            $query->execute();
+
+            if(!$query->rowCount())
+                return [];
+
+            return $this->createQuizObjects($query);
         }
 
         public function getQuizByid(int $id) : Quiz{
@@ -57,7 +65,21 @@
             $result = $query->fetch(\PDO::FETCH_ASSOC);
             if(!$result)
                 die("DB connection err. Please try again :(");
-                
+
             return $result['count'];
+        }
+
+        private function createQuizObjects($query){
+            $quizes = [];
+            while( ($result = $query->fetch()) ){
+                $quizes[] = new Quiz(
+                    $result['id_quiz'],
+                    $result['name'],
+                    $result['quiz_description'],
+                    $result['category_name']
+                );
+            }
+
+            return $quizes;
         }
     }

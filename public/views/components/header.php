@@ -3,6 +3,12 @@
         <?php if($user_logged){ ?>
             <div class="header-profile"></div>
             <div class="header-icons">
+                <a href="/" class="header__link">
+                    <div class="header__icon">
+                        <i class="fas fa-home"></i>
+                        <span class="header__desc"></span>
+                    </div>
+                </a>
                 <a href="/profile" class="header__link">
                     <div class="header__icon">
                         <i class="fas fa-user"></i>
@@ -32,6 +38,12 @@
             else{ ?>
         <div class="header-noprofile"></div>
         <div class="header-icons">
+            <a href="/" class="header__link">
+                <div class="header__icon">
+                    <i class="fas fa-home"></i>
+                    <span class="header__desc"></span>
+                </div>
+            </a>
             <a href="/login" class="header__link">
                 <div class="header__icon">
                     <i class="fas fa-users"></i>
