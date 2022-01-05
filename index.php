@@ -1,19 +1,19 @@
 <?php
-    require_once './vendor/autoload.php';
-    $path = trim($_SERVER['REQUEST_URI'], '/');
-    $path = parse_url( $path, PHP_URL_PATH);
-    
-    Router::get('', 'MainPageController');
-    Router::get('logout', 'MainPageController');
+require_once './vendor/autoload.php';
+$path = trim($_SERVER['REQUEST_URI'], '/');
+$path = parse_url($path, PHP_URL_PATH);
 
-    Router::get('login', 'SecurityController');
-    Router::get('register', 'SecurityController');
+Router::get('', 'MainPageController');
+Router::get('logout', 'MainPageController');
 
-    Router::get('profile', 'UserController');
-    
-    Router::get('quiz','QuizController');
-    Router::get('quizes','QuizController');
-    
-    Router::post('profileEdit','UserController');
-    Router::post('getQuestion',"QuizController");
-    Router::run($path);  
+Router::get('login', 'SecurityController');
+Router::get('register', 'SecurityController');
+
+Router::get('profile', 'UserController');
+
+Router::get('quiz', 'QuizController');
+Router::get('quizes', 'QuizController');
+
+Router::post('profileEdit', 'UserController');
+Router::post('getQuestions', "QuizController");
+Router::run($path);

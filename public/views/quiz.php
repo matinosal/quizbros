@@ -18,7 +18,7 @@
     <div class="page-padding">
         <div class="quiz-outer">
             <div class="quiz outline-orange" >
-                <div class="main-quiz" data-id="<?php echo $quiz->getId(); ?>" data-order="0">
+                <div class="main-quiz">
                     <div class="main-quiz__question">
                         <p class="question__content"><?php echo $question->getContent().'?'; ?></p>
                     </div>
