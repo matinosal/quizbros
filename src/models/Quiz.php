@@ -8,15 +8,15 @@
         private string $description;
         private string $category;
 
-        public function __construct(int $quid,string $name, string $description, string $category){
-            $this->quid = $quid;
+        public function __construct(int $id,string $name, string $description, string $category){
+            $this->id = $id;
             $this->name = $name;
             $this->description = $description;
             $this->category = $category;
         }
 
-        public function getQuid(){
-            return $this->quid;
+        public function getId(){
+            return $this->id;
         }
 
         public function getName(){

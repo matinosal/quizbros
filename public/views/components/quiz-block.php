@@ -2,7 +2,7 @@
     <?php foreach($quizes as $quiz){ ?>
     <div class="quizblock-outer">
         <div class="quizblock-inner">
-            <a href="/quiz/<?php echo $quiz->getQuid();?>" >
+            <a href="/quiz/<?php echo $quiz->getId();?>" >
                 <div class="quizblock">
                     <div class="quizblock-top">
                         <div class="quizblock__image">

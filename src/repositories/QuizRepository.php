@@ -28,11 +28,11 @@
             return $quizes;
         }
 
-        public function getQuizByid(int $quid) : Quiz{
+        public function getQuizByid(int $id) : Quiz{
             $query = $this->dbref->connect()->prepare(
-                "SELECT * FROM public.quizes AS q INNER JOIN public.categories AS c ON q.category_id = c.id_category WHERE id_quiz=:quid"
+                "SELECT * FROM public.quizes AS q INNER JOIN public.categories AS c ON q.category_id = c.id_category WHERE id_quiz=:id"
             );
-            $query->bindParam(":quid",$quid,\PDO::PARAM_INT);
+            $query->bindParam(":id",$id,\PDO::PARAM_INT);
             $query->execute();
 
             $result = $query->fetch(\PDO::FETCH_ASSOC);
@@ -46,5 +46,18 @@
                     $result['category_name']
                 );
         }
-    
+        
+        public function getQuestionsNumber(int $id) : int {
+            $query = $this->dbref->connect()->prepare(
+                "SELECT count(*) FROM public.quizes AS q INNER JOIN public.questions AS qq ON q.id_quiz = qq.id_quiz WHERE q.id_quiz=:id"
+            );
+            $query->bindParam(":id",$id,\PDO::PARAM_INT);
+            $query->execute();
+
+            $result = $query->fetch(\PDO::FETCH_ASSOC);
+            if(!$result)
+                die("DB connection err. Please try again :(");
+                
+            return $result['count'];
+        }
     }

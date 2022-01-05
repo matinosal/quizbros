@@ -4,8 +4,8 @@
 
     use Classes\Controllers\Controller;
     use Classes\Models\User;
-use Classes\Repositories\QuizRepository;
-use Classes\Repositories\UserRepository;
+    use Classes\Repositories\QuizRepository;
+    use Classes\Repositories\UserRepository;
 
 class MainPageController extends Controller{
         

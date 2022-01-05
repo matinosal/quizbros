@@ -319,3 +319,26 @@ body{
 .answer{
     padding: 20px;
 }
+.main-quiz__description{
+    margin-top:20px;
+}
+.main-quiz__description-heading{
+    font-size:19px;
+}
+.main-quiz__navigation{
+    padding:0 20px;
+}
+.quiz-navigation{
+    width:100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: bold;
+}
+.previous-question, .next-question{
+    cursor:pointer;
+}
+.previous-question{
+    visibility: hidden;
+}

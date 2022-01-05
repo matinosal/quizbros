@@ -1,9 +1,10 @@
 <?php 
 
     namespace Classes\Controllers;
-
-use Classes\Helpers\UserRedirect;
-use Classes\Repositories\UserRepository;
+    
+    use Classes\Controllers\Controller;
+    use Classes\Helpers\UserRedirect;
+    use Classes\Repositories\UserRepository;
 
 class UserController extends Controller{
 

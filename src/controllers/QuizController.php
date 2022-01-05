@@ -2,36 +2,70 @@
 
     namespace Classes\Controllers;
 
+    use Classes\Controllers\Controller;
     use Classes\Helpers\UserRedirect;
+    use Classes\Models\Question;
+    use Classes\Repositories\QuestionRepository;
     use Classes\Repositories\UserRepository;
     use Classes\Repositories\QuizRepository;
 
 class QuizController extends Controller{
 
-    public function quiz(){
+    public function quiz() : void{
         global $path;
-        $userRepository = new UserRepository();
-        $quizRepository = new QuizRepository();
 
         $pathSeparated = explode('/',$path);
-        $quid = array_pop($pathSeparated);
-        if(!is_numeric($quid))
+        $quizID = array_pop($pathSeparated);
+        if(!is_numeric($quizID))
             UserRedirect::redirectToMainPage();
+
+        $userRepository = new UserRepository();
+        $quizRepository = new QuizRepository();
+        $questionRepository = new QuestionRepository();
 
         $logged_user = $this->session->isLogged();
         if($logged_user)
             $user = $userRepository->getUserByUid($this->session->getLoggedUid());
         
-        
-        $quiz = $quizRepository->getQuizByid(intval($quid));
+        $quizID = intval($quizID);
+        $quiz = $quizRepository->getQuizByid($quizID);
+        $firstQuestion = $questionRepository->getFirstQuestion($quizID);
 
         $this->render('quiz',[
             'title'         => 'Quiz - '.$quiz->getName(),
-            'scripts'       => $this->loadScripts(),
+            'scripts'       => $this->loadScripts(['main-quiz']),
             'styles'        => $this->loadStyles(['style']),
             'user_logged'   => $logged_user,
             'user'          => $user ?? null,
-            'quiz'          => $quiz
+            'quiz'          => $quiz,
+            'question'      => $firstQuestion
+        ]);
+    }
+
+    public function getQuestion() : void {
+        if(!isset($_POST['id'])|| !isset($_POST['order']))
+            die();
+        
+        $questionRepository = new QuestionRepository();
+        $quizRepository = new QuizRepository();
+        $quizId = $_POST['id'];
+        $questionNumber = $_POST['order'];
+
+        $question = $questionRepository->getQuestionByOrder($quizId,$questionNumber);
+        $questionQuantity = $quizRepository->getQuestionsNumber($quizId);
+        if($questionNumber <= $questionQuantity || $questionNumber <= 0)
+            $buttonLock = true;
+        else
+            $buttonLock = false;
+
+        $answers = array_map(function($obj){
+            return $obj->getContent();
+        },$question->getAnswers());
+        
+        echo json_encode([
+            'question'      => $question->getContent(),
+            'answers'       => $answers,
+            'buttonLock'    => $buttonLock,
         ]);
     }
 }

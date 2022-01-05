@@ -1,8 +1,5 @@
 <?php
 
-use Classes\Controllers\MainPageController;
-use Classes\Controllers\SecurityController;
-
 class Router { 
 
   public static $routes;

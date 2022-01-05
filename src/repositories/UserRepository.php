@@ -43,7 +43,7 @@
                 $result['image_src']);
         }
 
-        public function addNewUser(string $login,string $passw,string $email){
+        public function addNewUser(string $login,string $passw,string $email) : int{
             $query = $this->dbref->connect()->prepare(
                 "INSERT INTO public.users(username,password,email,description) values(:login,:passw,:email,'') RETURNING id"
             );
@@ -55,14 +55,14 @@
             $result = $query->fetch(\PDO::FETCH_ASSOC);
             return $result['id'] ?: 0;
         }
-        
-        public function setNewDescription(int $uid, $userDescription){
+
+        public function setNewDescription(int $uid, $userDescription) : void{
             $query = $this->dbref->connect()->prepare(
                 "UPDATE public.users set description=:description where id=:uid"
             );
             $query->bindParam(":description",$userDescription,\PDO::PARAM_STR);
             $query->bindParam(":uid",$uid,\PDO::PARAM_INT);
             $query->execute();
-
+            die();
         }
     }
