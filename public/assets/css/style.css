@@ -54,6 +54,10 @@ body {
 }
 .logo-holder {
   height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 .form-holder {
   width: 100%;
