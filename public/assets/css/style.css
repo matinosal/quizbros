@@ -104,6 +104,11 @@ body {
   position: fixed;
   left: 0;
   top: 0;
+  -webkit-transition: 300ms linear;
+  -moz-transition: 300ms linear;
+  -o-transition: 300ms linear;
+  -ms-transition: 300ms linear;
+  transition: 300ms linear;
 }
 .header-noprofile {
   height: 60px;
@@ -111,10 +116,37 @@ body {
   content: "";
 }
 .header__icon {
+  display: flex;
+  align-content: center;
   font-size: 1.7em;
   text-align: center;
   padding: 20px;
   color: black;
+}
+.header__icon-container {
+  width: 30px;
+  height: 30px;
+}
+.header__desc {
+  font-size: 18px;
+  padding: 3px 0;
+  margin-left: 10px;
+  display: none;
+  align-self: end;
+  animation: fadeIn ease 500ms;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }
 /* Main page */
 .topbar {

@@ -5,38 +5,50 @@
             <div class="header-icons">
                 <a href="/" class="header__link">
                     <div class="header__icon">
-                        <i class="fas fa-home"></i>
-                        <span class="header__desc"></span>
+                        <div class="header__icon-container">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <span class="header__desc">Strona główna</span>
                     </div>
                 </a>
                 <a href="/profile" class="header__link">
                     <div class="header__icon">
-                        <i class="fas fa-user"></i>
-                        <span class="header__desc"></span>
+                        <div class="header__icon-container">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span class="header__desc">Twój profil</span>
                     </div>
                 </a>
                 <a href="/quizes" class="header__link">
                     <div class="header__icon">
-                        <i class="fas fa-question-circle"></i>
-                        <span class="header__desc"></span>
+                        <div class="header__icon-container">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <span class="header__desc">Twoje quizy</span>
                     </div>
                 </a>
                 <a href="/newquiz" class="header__link">
                     <div class="header__icon">
-                        <i class="fas fa-plus"></i>
-                        <span class="header__desc"></span>
+                        <div class="header__icon-container">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <span class="header__desc">Dodaj nowy</span>
                     </div>
                 </a>
                 <a href="/makeroom" class="header__link">
                     <div class="header__icon">
-                        <i class="fas fa-user-friends"></i>
-                        <span class="header__desc"></span>
+                        <div class="header__icon-container">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <span class="header__desc">Stwórz pokój</span>
                     </div>
                 </a>
                 <a href="/logout" class="header__link">
                     <div class="header__icon">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span class="header__desc"></span>
+                        <div class="header__icon-container">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </div>
+                        <span class="header__desc">Wyloguj</span>
                     </div>
                 </a>
             </div>
@@ -45,20 +57,26 @@
             <div class="header-icons">
                 <a href="/" class="header__link">
                     <div class="header__icon">
-                        <i class="fas fa-home"></i>
-                        <span class="header__desc"></span>
+                        <div class="header__icon-container">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <span class="header__desc">Strona główna</span>
                     </div>
                 </a>
                 <a href="/login" class="header__link">
                     <div class="header__icon">
-                        <i class="fas fa-users"></i>
-                        <span class="header__desc"></span>
+                        <div class="header__icon-container">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <span class="header__desc">Logowanie</span>
                     </div>
                 </a>
                 <a href="/register" class="header__link">
                     <div class="header__icon">
-                        <i class="fas fa-user-plus"></i>
-                        <span class="header__desc"></span>
+                        <div class="header__icon-container">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <span class="header__desc">Rejestracja</span>
                     </div>
                 </a>
             </div>
