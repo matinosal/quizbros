@@ -5,6 +5,7 @@ namespace Classes\Repositories;
 use Classes\Repositories\Repository;
 use Classes\Repositories\AnswerRepository;
 use Classes\Handlers\DBHandler;
+use Classes\Helpers\StringMethods;
 use Classes\Models\Question;
 
 class QuestionRepository extends Repository
@@ -75,5 +76,38 @@ class QuestionRepository extends Repository
             $questions[] = $question;
         }
         return $questions;
+    }
+
+    public function addQuestions(int $id, object $reqObj)
+    {
+        foreach ($reqObj->objects as $order => $question) {
+            $query = $this->dbref->connect()->prepare(
+                "INSERT INTO public.questions(content,id_quiz,quiz_order) values(:content,:id,:order) RETURNING id_question"
+            );
+            $query->bindParam(":content", $question->text, \PDO::PARAM_STR);
+            $query->bindParam(":id", $id, \PDO::PARAM_INT);
+            $query->bindParam(":order", $order, \PDO::PARAM_INT);
+            $query->execute();
+
+            $result = $query->fetch(\PDO::FETCH_ASSOC);
+            if (!$result)
+                die("DB connection err. Please try again :(");
+
+            $questionID = $result['id_question'];
+            $queryValues = '';
+            foreach ($question->answers as $i => $answer) {
+                $queryValues .= "('$answer',$questionID," . (($i == $question->checked) ? "true" : "false") . "),";
+            }
+            $queryValues = StringMethods::removeLastCharacter($queryValues);
+
+            $query = $this->dbref->connect()->prepare(
+                "INSERT INTO public.question_answers(content,id_question,is_true) VALUES $queryValues RETURNING id_answer"
+            );
+            $query->execute();
+            $result = $query->fetch(\PDO::FETCH_ASSOC);
+
+            if (!$result)
+                die("DB connection err. Please try again :(");
+        }
     }
 }

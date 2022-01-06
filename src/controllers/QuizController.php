@@ -66,7 +66,36 @@ class QuizController extends Controller
             'message'       => $message ?? [],
         ]);
     }
+    public function newquiz(): void
+    {
+        UserRedirect::redirectIfNotLogged($this->session);
+        $userRepository = new UserRepository();
+        $user = $userRepository->getUserByUid($this->session->getLoggedUid());
+        $this->render('new-quiz', [
+            'title'         => 'Quiz - Nowy Quiz',
+            'scripts'       => $this->loadScripts(['quiz-creator']),
+            'styles'        => $this->loadStyles(['style']),
+            'user_logged'   => true,
+            'user'          => $user ?? null,
+            'message'       => $message ?? [],
+        ]);
+    }
 
+    public function addQuiz(): void
+    {
+        $obj = json_decode(file_get_contents('php://input'));
+        $uid = $this->session->getLoggedUid();
+
+        if (!isset($obj->objects) || !isset($obj->quizname) || $uid == null)
+            echo json_encode(['success' => false]);
+
+        $quizRepository = new QuizRepository();
+        $questionRepository = new QuestionRepository();
+        $newQuizID = $quizRepository->addQuiz($uid, $obj->quizname);
+        $questionRepository->addQuestions($newQuizID, $obj);
+
+        echo json_encode(['success' => true]); // zmienic na true
+    }
     public function getQuestions(): void
     {
         if (!isset($_POST['id']))

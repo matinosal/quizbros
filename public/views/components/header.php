@@ -1,6 +1,6 @@
 <div class="header-outer">
     <div class="header">
-        <?php if($user_logged){ ?>
+        <?php if ($user_logged) { ?>
             <div class="header-profile"></div>
             <div class="header-icons">
                 <a href="/" class="header__link">
@@ -21,6 +21,12 @@
                         <span class="header__desc"></span>
                     </div>
                 </a>
+                <a href="/newquiz" class="header__link">
+                    <div class="header__icon">
+                        <i class="fas fa-plus"></i>
+                        <span class="header__desc"></span>
+                    </div>
+                </a>
                 <a href="/makeroom" class="header__link">
                     <div class="header__icon">
                         <i class="fas fa-user-friends"></i>
@@ -34,29 +40,28 @@
                     </div>
                 </a>
             </div>
-        <?php }
-            else{ ?>
-        <div class="header-noprofile"></div>
-        <div class="header-icons">
-            <a href="/" class="header__link">
-                <div class="header__icon">
-                    <i class="fas fa-home"></i>
-                    <span class="header__desc"></span>
-                </div>
-            </a>
-            <a href="/login" class="header__link">
-                <div class="header__icon">
-                    <i class="fas fa-users"></i>
-                    <span class="header__desc"></span>
-                </div>
-            </a>
-            <a href="/register" class="header__link">
-                <div class="header__icon">
-                    <i class="fas fa-user-plus"></i>
-                    <span class="header__desc"></span>
-                </div>
-            </a>
-        </div>
+        <?php } else { ?>
+            <div class="header-noprofile"></div>
+            <div class="header-icons">
+                <a href="/" class="header__link">
+                    <div class="header__icon">
+                        <i class="fas fa-home"></i>
+                        <span class="header__desc"></span>
+                    </div>
+                </a>
+                <a href="/login" class="header__link">
+                    <div class="header__icon">
+                        <i class="fas fa-users"></i>
+                        <span class="header__desc"></span>
+                    </div>
+                </a>
+                <a href="/register" class="header__link">
+                    <div class="header__icon">
+                        <i class="fas fa-user-plus"></i>
+                        <span class="header__desc"></span>
+                    </div>
+                </a>
+            </div>
         <?php } ?>
     </div>
 </div>

@@ -13,7 +13,9 @@ Router::get('profile', 'UserController');
 
 Router::get('quiz', 'QuizController');
 Router::get('quizes', 'QuizController');
+Router::get('newquiz', 'QuizController');
 
 Router::post('profileEdit', 'UserController');
 Router::post('getQuestions', "QuizController");
+Router::post('addQuiz', "QuizController");
 Router::run($path);
