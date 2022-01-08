@@ -4,21 +4,21 @@
     <div class="row">
         <div class="page-padding">
             <div class="form-holder">
-                
+
                 <form action="/register" method="POST" class="security-form">
                     <p class="security-form__heading">Rejestracja</p>
                     <?php
-                        foreach($errorMessages as $err){ ?>
-                            <p class="form-holder__error"><?php echo $err; ?></p>
-                    <?php }?>
-                    <input name="login" placeholder="Login" type="text" class="security-form__input">
-                    <input name="password" placeholder="Hasło" type="password" class="security-form__input">
-                    <input name="email" placeholder="E-mail" type="text" class="security-form__input">
+                    foreach ($errorMessages as $err) { ?>
+                        <p class="form-holder__error"><?php echo $err; ?></p>
+                    <?php } ?>
+                    <input name="login" placeholder="Login" type="text" class="security-form__input outline-blue">
+                    <input name="password" placeholder="Hasło" type="password" class="security-form__input outline-blue">
+                    <input name="email" placeholder="E-mail" type="text" class="security-form__input outline-blue">
                     <div class="checkbox-container">
                         <input name="consent" type="checkbox" value="accepted" class="security-form__checkbox">
                         <p class="checkbox-container__desc">Pozwalam na przetwarzanie moich danych osobowych</p>
                     </div>
-                    <div class="security-form__submit">Wchodzę</div>
+                    <div tabindex=0 class="security-form__submit button blue">Wchodzę</div>
                 </form>
             </div>
         </div>

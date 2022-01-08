@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function () {
   const nextButton = document.querySelector(".next-question");
   const prevButton = document.querySelector(".previous-question");
-  let block = true;
   let order = 0;
   let questions = [];
   prevButton.addEventListener("click", function () {
@@ -15,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (questions.length == 0) return;
     order += 1;
     changeQuestion(order, questions, prevButton);
-    if (order <= questions.length - 1) this.style.visibility = "hidden";
+    if (order >= questions.length - 1) this.style.visibility = "hidden";
   });
   questions = await getQuestions();
 });

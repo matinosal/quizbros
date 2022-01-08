@@ -5,9 +5,9 @@ namespace Classes\Models;
 class Question
 {
     private int $id;
+    private int $quizId;
     private string $content;
-    private array $answers;
-
+    private array $answers = [];
 
     public function __construct(int $id, string $content)
     {
@@ -30,6 +30,11 @@ class Question
         return $this->answers;
     }
 
+    public function getQuizId(): int
+    {
+        return $this->quizId;
+    }
+
     public function getAnswerValues(): array
     {
         return array_map(function ($obj) {
@@ -40,5 +45,15 @@ class Question
     public function setAnswers($answers): void
     {
         $this->answers = $answers;
+    }
+
+    public function setQuizId(int $id): void
+    {
+        $this->quizId = $id;
+    }
+
+    public function addAnswer(Answer $answer): void
+    {
+        $this->answers[] = $answer;
     }
 }

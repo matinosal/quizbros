@@ -7,12 +7,12 @@
                 <form action="/login" class="security-form" method="POST">
                     <p class="security-form__heading">Logowanie</p>
                     <?php
-                        foreach($errorMessages as $err){ ?>
-                            <p class="form-holder__error"><?php echo $err; ?></p>
-                    <?php }?>
-                    <input placeholder="E-mail" name='email' type="text" class="security-form__input">
-                    <input placeholder="Haslo" name='password'type="password" class="security-form__input">
-                    <div class="security-form__submit">Wchodzę</div>
+                    foreach ($errorMessages as $err) { ?>
+                        <p class="form-holder__error"><?php echo $err; ?></p>
+                    <?php } ?>
+                    <input placeholder="E-mail" name='email' type="text" class="security-form__input outline-blue">
+                    <input placeholder="Haslo" name='password' type="password" class="security-form__input outline-blue">
+                    <div tabindex=0 class="security-form__submit button blue ">Wchodzę</div>
                 </form>
             </div>
         </div>

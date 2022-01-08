@@ -1,7 +1,8 @@
 <?php
-    foreach($quizes as $quiz){
+foreach ($quizes as $quiz) {
 ?>
     <div class="quiz outline-orange" data-id="<?php echo $quiz->getId(); ?>">
+        <?php var_dump($quizesIds); ?>
         <div class="quiz-short">
             <span class="quiz__title"><?php echo $quiz->getName(); ?></span>
             <span class="quiz__counter">Zagrany: xxx razy</span>
@@ -9,4 +10,4 @@
         </div>
         <div class="quiz-details"></div>
     </div>
- <?php } ?>
+<?php } ?>

@@ -19,11 +19,3 @@ document.addEventListener("DOMContentLoaded", function () {
     target.addEventListener(eventName, eventsWithHandlers[eventName], false);
   });
 });
-
-/*
-setTimeout(() => {
-        [...document.querySelectorAll(".header__desc")].forEach(
-          (el) => (el.style.display = "block")
-        );
-      }, 300);
-       */

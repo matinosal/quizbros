@@ -5,8 +5,11 @@ namespace Classes\Repositories;
 use Classes\Repositories\Repository;
 use Classes\Repositories\AnswerRepository;
 use Classes\Handlers\DBHandler;
+use Classes\Helpers\Enums\RepositoryDictionary;
 use Classes\Helpers\StringMethods;
+use Classes\Models\Answer;
 use Classes\Models\Question;
+use Exception;
 
 class QuestionRepository extends Repository
 {
@@ -109,5 +112,43 @@ class QuestionRepository extends Repository
             if (!$result)
                 die("DB connection err. Please try again :(");
         }
+    }
+
+    public function getQuizesFirstQuestion(array $quizIds): array
+    {
+        $gluedIDs = implode(",", $quizIds);
+        $query = $this->dbref->connect()->prepare(
+            "SELECT DISTINCT ON (q.id_quiz) 'question' as type, q.id_question as obj_id, content, id_quiz
+            FROM questions as q
+            WHERE q.id_quiz in ($gluedIDs)
+            UNION
+            SELECT 'answer',id_question as obj_id, content, 0
+            FROM question_answers as a
+            WHERE id_question in (
+                SELECT DISTINCT ON (q.id_quiz) id_question
+                FROM questions as q
+                WHERE q.id_quiz in ($gluedIDs))"
+        );
+        $query->execute();
+
+        if (!$query->rowCount()) {
+            die('DB error, please try again :(');
+        }
+
+        $questions = [];
+        $answers = [];
+        while ($result = $query->fetch(\PDO::FETCH_ASSOC)) {
+            $id = $result['obj_id'];
+            if ($result['type'] == RepositoryDictionary::Question) {
+                $questions[$id] = new Question($id, $result['content']);
+                $questions[$id]->setQuizId($result['id_quiz']);
+                continue;
+            }
+            $answers[] =  new Answer($id, $result['content'], false);
+        }
+        foreach ($answers as $answer)
+            $questions[$answer->getId()]->addAnswer($answer);
+
+        return array_values($questions);
     }
 }

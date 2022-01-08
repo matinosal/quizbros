@@ -50,11 +50,22 @@ class QuizController extends Controller
         UserRedirect::redirectIfNotLogged($this->session);
         $userRepository = new UserRepository();
         $quizRepository = new QuizRepository();
+        $questionRepository = new QuestionRepository();
         $user = $userRepository->getUserByUid($this->session->getLoggedUid());
 
         $quizes =  $quizRepository->getUserQuizes($user->getUid());
+
         if (empty($quizes))
             $message[] = QuizEnum::NoQuizes;
+
+        else {
+            $quizesIds = array_map(fn ($obj) => $obj->getID(), $quizes);
+
+            foreach ($questionRepository->getQuizesFirstQuestion($quizesIds) as $question) {
+                $index = array_search($question->getQuizId(), $quizesIds);
+                $quizes[$index]->addQuestion($question);
+            }
+        }
 
         $this->render('quizes', [
             'title'         => 'Quiz - Twoje Quizy',
