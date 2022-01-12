@@ -56,4 +56,12 @@ class Question
     {
         $this->answers[] = $answer;
     }
+    public function getWrongAnswers(): array
+    {
+        return array_filter($this->answers, fn ($answer) => !$answer->isTrue());
+    }
+    public function getCorrectAnswer(): array
+    {
+        return array_filter($this->answers, fn ($answer) => $answer->isTrue());
+    }
 }

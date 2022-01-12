@@ -102,4 +102,19 @@ class QuizRepository extends Repository
 
         return $quizes;
     }
+
+    public function isUserQuiz(int $user, int $quiz): bool
+    {
+        $query = $this->dbref->connect()->prepare(
+            "SELECT * FROM public.quizes AS q  WHERE q.id_quiz=:id and q.id_user=:uid"
+        );
+        $query->bindParam(":id", $quiz, \PDO::PARAM_INT);
+        $query->bindParam(":uid", $user, \PDO::PARAM_INT);
+        $query->execute();
+
+        if (!$query->fetch(\PDO::FETCH_ASSOC))
+            return false;
+
+        return true;
+    }
 }

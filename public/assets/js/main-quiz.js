@@ -21,12 +21,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 async function getQuestions() {
   const id = parseInt(window.location.href.split("/").pop());
-  let reqData = new FormData();
-  reqData.append("id", id);
-
   const data = await fetch("/getQuestions", {
     method: "POST",
-    body: reqData,
+    body: JSON.stringify({ id: id }),
   }).then((req) => req.json());
 
   return data;

@@ -97,6 +97,10 @@ body {
 .hidden {
   display: none !important;
 }
+.fa-times {
+  float: right;
+  margin-right: 20px;
+}
 /* Header */
 .header-outer {
   width: 80px;
@@ -359,6 +363,23 @@ body {
 }
 .quiz-details {
   display: none;
+  margin: 20px;
+  padding: 20px;
+}
+.quiz-details__answers {
+  width: 100%;
+  display: flex;
+}
+.quiz-details__answers-outer {
+  width: 50%;
+}
+.quiz-details__answers-inner {
+  padding: 20px;
+}
+.quiz-details__navigation {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
 }
 .main-quiz {
   padding: 20px;

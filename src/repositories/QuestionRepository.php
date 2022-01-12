@@ -118,11 +118,11 @@ class QuestionRepository extends Repository
     {
         $gluedIDs = implode(",", $quizIds);
         $query = $this->dbref->connect()->prepare(
-            "SELECT DISTINCT ON (q.id_quiz) 'question' as type, q.id_question as obj_id, content, id_quiz
+            "SELECT DISTINCT ON (q.id_quiz) 'question' as type, q.id_question as obj_id, content, id_quiz, false as is_true
             FROM questions as q
             WHERE q.id_quiz in ($gluedIDs)
             UNION
-            SELECT 'answer',id_question as obj_id, content, 0
+            SELECT 'answer',id_question as obj_id, content,0, is_true
             FROM question_answers as a
             WHERE id_question in (
                 SELECT DISTINCT ON (q.id_quiz) id_question
@@ -144,7 +144,7 @@ class QuestionRepository extends Repository
                 $questions[$id]->setQuizId($result['id_quiz']);
                 continue;
             }
-            $answers[] =  new Answer($id, $result['content'], false);
+            $answers[] =  new Answer($id, $result['content'], $result['is_true']);
         }
         foreach ($answers as $answer)
             $questions[$answer->getId()]->addAnswer($answer);

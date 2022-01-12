@@ -69,7 +69,7 @@ class QuizController extends Controller
 
         $this->render('quizes', [
             'title'         => 'Quiz - Twoje Quizy',
-            'scripts'       => $this->loadScripts(),
+            'scripts'       => $this->loadScripts(['quiz-edit']),
             'styles'        => $this->loadStyles(['style']),
             'user_logged'   => true,
             'user'          => $user ?? null,
@@ -109,11 +109,14 @@ class QuizController extends Controller
     }
     public function getQuestions(): void
     {
-        if (!isset($_POST['id']))
+        $obj = json_decode(file_get_contents('php://input'));
+        if (!isset($obj->id))
             die();
 
         $questionRepository = new QuestionRepository();
-        $quizId = $_POST['id'];
+        $quizRepository = new QuizRepository();
+
+        $quizId = $obj->id;
         $questions = $questionRepository->getAllQuestions($quizId);
 
         $answers = array_map(function ($obj) {
@@ -122,6 +125,14 @@ class QuizController extends Controller
                 'answers'  => $obj->getAnswerValues()
             );
         }, $questions);
+
+        if (($uid = $this->session->getLoggedUid()) && $quizRepository->isUserQuiz($uid, $quizId)) {
+            foreach ($questions as $key => $question) {
+                $correctAnswers = $question->getCorrectAnswer();
+                $answer = array_pop($correctAnswers);
+                $answers[$key]['correct'] = $answer->getContent();
+            }
+        }
         echo json_encode($answers);
     }
 }
