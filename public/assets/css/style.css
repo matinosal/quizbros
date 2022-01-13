@@ -48,6 +48,10 @@ body {
   background-color: #5190e7;
   color: white;
 }
+.row__bgpurple {
+  background-color: purple;
+  color: white;
+}
 .page-padding {
   width: 1440px;
   display: flex;

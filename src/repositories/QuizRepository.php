@@ -117,4 +117,15 @@ class QuizRepository extends Repository
 
         return true;
     }
+
+    public function searchQuizes(string $searchText)
+    {
+        $query = $this->dbref->connect()->prepare(
+            "SELECT * FROM public.quizes as q inner join public.categories as c on q.category_id = c.id_category where q.name LIKE '%$searchText%'"
+        );
+        $query->execute();
+        if (!$query->rowCount())
+            die("DB connection err. Please try again :(");
+        return $this->createQuizObjects($query);
+    }
 }

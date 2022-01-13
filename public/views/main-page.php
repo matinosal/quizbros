@@ -7,7 +7,19 @@
             <p class="topbar__heading">Masz kod dostępu?</p>
             <div class="topbar__form">
                 <form action="" class='quickform'>
-                    <input placeholder="Wprowadź go tutaj" type="text" class="quickform__input quickform__input__bluebg">
+                    <input placeholder="Wprowadź go tutaj" name="code" type="text" class="quickform__input">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row row__bgpurple">
+    <div class="page-padding">
+        <div class="topbar">
+            <p class="topbar__heading">Nie masz pomysłu na quiz? Znajdź go!</p>
+            <div class="topbar__form">
+                <form action="/" class='quickform'>
+                    <input placeholder="Wprowadź go tutaj" name="search" type="text" class="quickform__input">
                 </form>
             </div>
         </div>
