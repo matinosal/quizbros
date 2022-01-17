@@ -3,3 +3,4 @@ config.php
 vendor/
 *.pgsql
 todo.md
+node_modules
