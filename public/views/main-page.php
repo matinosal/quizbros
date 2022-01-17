@@ -13,18 +13,20 @@
         </div>
     </div>
 </div>
-<div class="row row__bgpurple">
-    <div class="page-padding">
-        <div class="topbar">
-            <p class="topbar__heading">Nie masz pomysłu na quiz? Znajdź go!</p>
-            <div class="topbar__form">
-                <form action="/" class='quickform'>
-                    <input placeholder="Wprowadź go tutaj" name="search" type="text" class="quickform__input">
-                </form>
+<?php if ($user_logged) { ?>
+    <div class="row row__bgpurple">
+        <div class="page-padding">
+            <div class="topbar">
+                <p class="topbar__heading">Nie masz pomysłu na quiz? Znajdź go!</p>
+                <div class="topbar__form">
+                    <form action="/" class='quickform'>
+                        <input placeholder="Podaj nazwę quizu!" name="search" type="text" class="quickform__input">
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+<?php } ?>
 <div class="row">
     <div class="page-padding">
         <div class="quizholder">

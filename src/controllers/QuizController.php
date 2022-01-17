@@ -135,4 +135,22 @@ class QuizController extends Controller
         }
         echo json_encode($answers);
     }
+
+    public function getQuizes()
+    {
+        $obj = json_decode(file_get_contents('php://input'));
+        $name = $obj->name;
+        if ($name == null)
+            echo json_encode(['error' => true]);
+
+        $quizRepository = new QuizRepository();
+        $quizes = $quizRepository->searchQuizes($name);
+        $filteredQuizes = array_map(function ($obj) {
+            return array(
+                'id'    => $obj->getId(),
+                'name'  => $obj->getName()
+            );
+        }, $quizes);
+        echo json_encode($filteredQuizes);
+    }
 }

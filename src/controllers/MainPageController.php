@@ -9,7 +9,6 @@ use Classes\Repositories\UserRepository;
 
 class MainPageController extends Controller
 {
-
     private $userRepository;
 
     public function index(): void
@@ -17,12 +16,13 @@ class MainPageController extends Controller
         $this->userRepository = new UserRepository();
         $this->quizRepository = new QuizRepository();
 
-        if ($this->isGet() && isset($_GET['search']))
+        $logged = $this->session->isLogged();
+        $user = $logged ? $this->getLoggedUser() : null;
+
+        if ($this->isGet() && isset($_GET['search']) && $logged)
             $quizes = $this->quizRepository->searchQuizes($_GET['search']);
         else
             $quizes = $this->quizRepository->getQuizes(6);
-        $logged = $this->session->isLogged();
-        $user = $logged ? $this->getLoggedUser() : null;
 
         $this->render('main-page', [
             'title'         => 'QuizBros - Strona główna',

@@ -15,7 +15,12 @@ Router::get('quiz', 'QuizController');
 Router::get('quizes', 'QuizController');
 Router::get('newquiz', 'QuizController');
 
+Router::get('makeroom', 'GameController');
+Router::get('room', 'GameController');
+
 Router::post('profileEdit', 'UserController');
 Router::post('getQuestions', "QuizController");
 Router::post('addQuiz', "QuizController");
+Router::post('getQuizes', "QuizController");
+
 Router::run($path);

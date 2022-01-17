@@ -1,27 +1,34 @@
 <?php
-    namespace Classes\Handlers;
 
-    class SessionHandler{
-        private array $data;
+namespace Classes\Handlers;
 
-        public function __construct(){
-            session_start();
-            $this->data = $_SESSION;
-        }
+class SessionHandler
+{
+    private array $data;
 
-        public function isLogged() : bool {
-            return isset($this->data['uid']);
-        }
-
-        public function setLoggedUser(int $uid) : void{
-            $_SESSION['uid'] = $uid;
-        }
-
-        public function getLoggedUid() : int {
-            return intval($this->data['uid']);
-        }
-
-        public function clear() : void {
-            session_destroy();
-        }
+    public function __construct()
+    {
+        session_start();
+        $this->data = $_SESSION;
     }
+
+    public function isLogged(): bool
+    {
+        return isset($this->data['uid']);
+    }
+
+    public function setLoggedUser(int $uid): void
+    {
+        $_SESSION['uid'] = $uid;
+    }
+
+    public function getLoggedUid(): int
+    {
+        return intval($this->data['uid'] ?? 0);
+    }
+
+    public function clear(): void
+    {
+        session_destroy();
+    }
+}
