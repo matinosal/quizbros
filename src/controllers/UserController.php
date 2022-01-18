@@ -9,8 +9,6 @@ use Classes\Repositories\UserRepository;
 class UserController extends Controller
 {
 
-    private $userRepository;
-
     public function profile()
     {
         UserRedirect::redirectIfNotLogged($this->session);
@@ -23,7 +21,7 @@ class UserController extends Controller
 
         $this->render('profile', [
             'title'         => 'QuizBros - Twój profil ',
-            'scripts'       => $this->loadScripts(['profile']),
+            'scripts'       => $this->loadScripts(['profile', 'header']),
             'styles'        => $this->loadStyles(['style']),
             'user_logged'   => true,
             'user'          => $user,

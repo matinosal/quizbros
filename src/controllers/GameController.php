@@ -24,13 +24,28 @@ class GameController extends Controller
 
         $this->render('make-room', [
             'title'         => 'QuizBros - Kreator gry',
-            'scripts'       => $this->loadScripts(['makeroom']),
+            'scripts'       => $this->loadScripts(['makeroom', 'header']),
             'styles'        => $this->loadStyles(['style']),
             'user_logged'   => true,
             'user'          => $user,
         ]);
     }
+    public function game(): void
+    {
+        if (!$this->isPost() || !isset($_POST['code'])) {
+            header("Location: http://" . $_SERVER['HTTP_HOST'] . "/");
+            die();
+        }
 
+        $roomRepository = new RoomRepository();
+        $room =  $roomRepository->getRoomByCode($_POST['code']);
+        $this->render('game', [
+            'title'         => 'QuizBros - Gra' . $room->getName(),
+            'scripts'       => $this->loadScripts([]),
+            'styles'        => $this->loadStyles(['style']),
+            'room'          => $room,
+        ]);
+    }
     public function room(): void
     {
         global $path;
@@ -42,7 +57,7 @@ class GameController extends Controller
 
         $this->render('room', [
             'title'         => 'QuizBros - Gra' . $room->getName(),
-            'scripts'       => $this->loadScripts(['makeroom']),
+            'scripts'       => $this->loadScripts(['header']),
             'styles'        => $this->loadStyles(['style']),
             'user_logged'   => true,
             'room'          => $room,

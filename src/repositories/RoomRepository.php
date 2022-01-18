@@ -37,4 +37,20 @@ class RoomRepository extends Repository
 
         return new Room($roomId, $result['id_user'], $result['room_name'], $result['room_code']);
     }
+
+    public function getRoomByCode(string $code): Room
+    {
+        $query = $this->dbref->connect()->prepare(
+            "SELECT id_room,id_user,room_name FROM public.rooms where room_code = :room_code"
+        );
+        $query->bindParam(":room_code", $code, \PDO::PARAM_STR);
+        $query->execute();
+
+        $result = $query->fetch(\PDO::FETCH_ASSOC);
+
+        if (!$result)
+            die("DB ERR :/");
+
+        return new Room($result['id_room'], $result['id_user'], $result['room_name'], $code);
+    }
 }

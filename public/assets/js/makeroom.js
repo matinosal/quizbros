@@ -17,9 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   this.querySelector(".room__button").addEventListener("click", function () {
-    const invalidInputsNum = [
-      ...document.querySelectorAll(".room__input-holder"),
-    ]
+    const invalidInputsNum = [...document.querySelectorAll(".input-holder")]
       .map((el) => el.children)
       .reduce((a, b) => [...a].concat([...b]))
       .filter((input) => input.value == 0 || input.value == "").length;

@@ -26,7 +26,7 @@ class MainPageController extends Controller
 
         $this->render('main-page', [
             'title'         => 'QuizBros - Strona główna',
-            'scripts'       => $this->loadScripts(),
+            'scripts'       => $this->loadScripts(['header']),
             'styles'        => $this->loadStyles(['style']),
             'user_logged'   => $logged,
             'user'          => $user,

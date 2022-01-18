@@ -14,14 +14,14 @@
             <div class="room-inner">
                 <form class="room__form" action="/makeroom" method="POST">
                     <p class="room__heading">Wpisz nazwę quizu, a następnie wybierz go z listy</p>
-                    <div class="room__input-holder">
+                    <div class="input-holder">
                         <input placeholder="Nazwa quizu" type="text" class="room__quiz-input quiz-name">
                         <select name="quiz_id" id="" class="room__quiz-select">
                             <option disabled value="0">Dane są ładowane proszę czekać</option>
                         </select>
                     </div>
                     <p class="room__heading">Następnie podaj nazwę swojego pokoju</p>
-                    <div class="room__input-holder">
+                    <div class="input-holder">
                         <input placeholder="Nazwa pokoju" name="room_name" type="text" class="room__quiz-input">
                     </div>
                     <div class="room__button button blue">Stwórz pokój!</div>
