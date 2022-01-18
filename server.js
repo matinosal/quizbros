@@ -1,15 +1,28 @@
-var express = require("express");
-var app = express();
+const WebSocket = require("ws");
+const config = require("./config.js");
+const express = require("express");
+const { Client } = require("pg");
+
+const app = express();
 const PORT = 3000;
-app.all("/secret", function (req, res, next) {
-  console.log("Hello from secret");
-  next();
+
+const client = new Client({
+  connectionString: config.URI,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
-app.get("/", function (req, res) {
-  res.send("Hello World!");
+app.get("/", async function (req, res) {
+  client.connect();
+  const arr = await client.query("SELECT * FROM users;");
+  await client.end();
+  res.send({ data: arr });
 });
 
 app.listen(PORT, function () {
   console.log(`Example app listening on port ${PORT}!!`);
 });
+
+// const wss = new WebSocket.Server({ port: 3000 });
+// const activeRooms = new Map();
