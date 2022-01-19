@@ -601,6 +601,13 @@ body {
   justify-content: center;
   align-content: center;
 }
+.game__first-step {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 .game__players-heading {
   font-weight: bold;
   text-align: center;
@@ -623,10 +630,6 @@ body {
 .game-holder {
   width: 80%;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: white;
 }
 .game__title {

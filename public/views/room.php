@@ -24,7 +24,7 @@
 </div>
 <div class="row">
     <div class="page-padding">
-        <div class="game outline-blue">
+        <div class="game outline-blue" data-roomID="<?php echo $room->getRoomId(); ?>">
             <div class="game__players">
                 <p class="game__players-heading">Lista graczy, którzy są w poczekalni:</p>
                 <div class="game__players-holder outline-purple">

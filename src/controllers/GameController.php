@@ -41,7 +41,7 @@ class GameController extends Controller
         $room =  $roomRepository->getRoomByCode($_POST['code']);
         $this->render('game', [
             'title'         => 'QuizBros - Gra' . $room->getName(),
-            'scripts'       => $this->loadScripts([]),
+            'scripts'       => $this->loadScripts(['sockets', 'gameClient']),
             'styles'        => $this->loadStyles(['style']),
             'room'          => $room,
         ]);
@@ -57,7 +57,7 @@ class GameController extends Controller
 
         $this->render('room', [
             'title'         => 'QuizBros - Gra' . $room->getName(),
-            'scripts'       => $this->loadScripts(['header']),
+            'scripts'       => $this->loadScripts(['sockets', 'hostClient', 'header']),
             'styles'        => $this->loadStyles(['style']),
             'user_logged'   => true,
             'room'          => $room,
