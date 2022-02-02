@@ -19,3 +19,13 @@ async function connectToServer() {
     }, 10);
   });
 }
+
+function showPlayers(target, data) {
+  target.innerHTML = "";
+  for (player of data.users) {
+    const span = document.createElement("span");
+    span.classList.add("player-name");
+    span.innerHTML = player;
+    target.append(span);
+  }
+}

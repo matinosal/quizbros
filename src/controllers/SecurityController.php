@@ -25,7 +25,7 @@ class SecurityController extends Controller
         if ($this->isPost() && !$this->checkLogin()) {
             $user = $this->userRepository->getUser($_POST['email']);
 
-            if ($user == null || $user?->getPassword() != $_POST['password'])
+            if ($user == null || $user?->getPassword() != md5(md5($_POST['password'])))
                 $this->err->raise("Błędny email lub hasło");
             else {
                 $this->session->setLoggedUser($user->getUid());
@@ -84,7 +84,7 @@ class SecurityController extends Controller
         if (!$this->checkRegisterFields($login, $passw, $email, $consent))
             return;
 
-        $uid = $this->userRepository->addNewUser($login, $passw, $email);
+        $uid = $this->userRepository->addNewUser($login, md5(md5($passw)), $email);
         if ($uid == DBErrorEnum::FailedToAddUser) {
             $this->err->raise("Błąd przy dodawaniu użytkownika, proszę spróbować ponownie");
             return;

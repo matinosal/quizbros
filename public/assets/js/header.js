@@ -5,10 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
       showSpans();
     },
     mouseleave(e) {
-      if (!mobile) e.srcElement.style.width = "80px";
-      else {
-        e.srcElement.style.display = "none";
-      }
+      e.srcElement.style.width = "80px";
       hideSpans();
     },
   };
@@ -20,10 +17,20 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   this.querySelector(".mobile-icon").addEventListener("click", () => {
-    mobile = true;
     target.style.display = "block";
     target.style.width = "250px";
     showSpans();
+    setTimeout(() => {
+      mobile = true;
+    }, 1000);
+  });
+
+  this.addEventListener("click", () => {
+    if (mobile) {
+      target.style.display = "none";
+      hideSpans();
+      mobile = false;
+    }
   });
 });
 function showSpans() {

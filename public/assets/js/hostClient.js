@@ -12,18 +12,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (!serverData.action) return;
     switch (serverData.action) {
       case "refresh_users":
-        showPlayers(serverData.data);
+        showPlayers(userList, serverData.data);
         break;
     }
   };
-
-  function showPlayers(data) {
-    userList.innerHTML = "";
-    for (player of data.users) {
-      const span = document.createElement("span");
-      span.classList.add("player-name");
-      span.innerHTML = player;
-      userList.append(span);
-    }
-  }
 });

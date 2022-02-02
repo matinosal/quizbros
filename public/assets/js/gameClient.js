@@ -1,35 +1,40 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   const username = this.querySelector(".game-form__input");
   const roomID = this.querySelector(".one-page").getAttribute("data-roomID");
-  let socketClient = {};
+  const usersBlock = this.querySelector(".game__players");
+  const userList = this.querySelector(".game__players-holder");
+  let socketClient = await connectToServer();
+
+  socketClient.onmessage = (res) => {
+    const serverData = JSON.parse(res.data);
+    if (!serverData.action) return;
+    switch (serverData.action) {
+      case "refresh_users":
+        showPlayers(userList, serverData.data);
+        break;
+    }
+  };
 
   this.querySelector(".game__button").addEventListener(
     "click",
     async function () {
       const user = username.value;
-      console.log(user);
       if (user == "") return;
       username.disabled = true;
       username.value = "";
 
-      socketClient = await connectToServer();
-      send(socketClient, "newuser", { roomid: roomID, username: user });
+      socketClient = send(socketClient, "newuser", {
+        roomid: roomID,
+        username: user,
+      });
 
-      socketClient.onmessage = (serverData) => {
-        const data = JSON.parse(MessageEvent.data);
-        if (!data.action) return;
-        switch (data.action) {
-          case "refresh_users":
-            console.log(data);
-            break;
-        }
-      };
+      document.querySelector(".game__first-step").style.display = "none";
+      usersBlock.style.display = "block";
     }
   );
 });
 
 function send(socket, action, data) {
-  console.log(action);
   socket.send(
     JSON.stringify({
       action: action,
