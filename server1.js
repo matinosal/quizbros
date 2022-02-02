@@ -1,9 +1,9 @@
 // node_modules //
 const WebSocket = require("ws");
-const config = require("./server_modules/config.js");
 const express = require("express");
 const { Client, ClientBase } = require("pg");
 // -- Models --- //
+const config = require("./server_modules/config.js");
 const User = require("./server_modules/models/User.js");
 
 const PORT = 3000;

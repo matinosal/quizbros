@@ -1,3 +1,8 @@
+<div class="header__mobile">
+    <div class="header__icon-container mobile-icon">
+        <i class="fas fa-bars"></i>
+    </div>
+</div>
 <div class="header-outer">
     <div class="header">
         <?php if ($user_logged) { ?>
