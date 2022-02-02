@@ -16,4 +16,4 @@ RUN npm i -g nodemon
 COPY . /var/www/html
 
 EXPOSE 3000
-CMD [ "nodemon", "./server.js" ]
+CMD [ "node", "./server1.js" ]

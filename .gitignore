@@ -4,3 +4,4 @@ vendor/
 *.pgsql
 todo.md
 node_modules
+public/uploads/*

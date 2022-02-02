@@ -37,9 +37,11 @@ function showSpans() {
   [...document.querySelectorAll(".header__desc")].forEach(
     (el) => (el.style.display = "block")
   );
+  document.querySelector(".header__user-profile").style.visibility = "visible";
 }
 function hideSpans() {
   [...document.querySelectorAll(".header__desc")].forEach(
     (el) => (el.style.display = "none")
   );
+  document.querySelector(".header__user-profile").style.visibility = "hidden";
 }
