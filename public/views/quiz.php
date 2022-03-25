@@ -50,4 +50,5 @@
         </div>
     </div>
 </div>
+<?php require_once "./public/views/components/footer.php"; ?>
 <?php require_once "./public/views/page-end.php"; ?>

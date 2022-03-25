@@ -11,14 +11,21 @@
 <div class="row">
     <div class="page-padding">
         <div class="user-container">
-            <div class="user-heading">
-                <div class="user-heading__image-container">
-                    <div class="user-heading__image-holder">
-                        <div class="user-heading__image"></div>
+            <div class="user-heading__outer">
+                <div class="user-heading">
+                    <div class="user-heading__image-container">
+                        <?php if ($user->getImage() != "") { ?>
+                            <div class="user-heading__image-holder" style="background-image:url('/public/uploads/<?php echo $user->getImage(); ?>')"></div>
+                        <?php } else { ?>
+                            <div class="user-heading__image-holder">
+                                <div class="user-heading__image"></div>
+                            </div>
+                        <?php } ?>
+
                     </div>
-                </div>
-                <div class="user-heading__username">
-                    <span class="user-heading__username-details">User123 #123123</span>
+                    <div class=" user-heading__username">
+                        <span class="user-heading__username-details"><?php echo $user->getLogin() . " #" . $user->getUid(); ?></span>
+                    </div>
                 </div>
             </div>
             <div class="user-description outline-blue">
@@ -34,5 +41,5 @@
         </div>
     </div>
 </div>
-
+<?php require_once "./public/views/components/footer.php"; ?>
 <?php require_once "./public/views/page-end.php"; ?>

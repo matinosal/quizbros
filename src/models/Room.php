@@ -14,6 +14,7 @@ class Room
         $this->userId = $userId;
         $this->roomId = $roomId;
         $this->name = $name;
+        $this->roomCode = $roomCode;
     }
     public function getRoomId(): int
     {

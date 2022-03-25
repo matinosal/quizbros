@@ -1,7 +1,16 @@
+<div class="header__mobile">
+    <div class="header__icon-container mobile-icon">
+        <i class="fas fa-bars"></i>
+    </div>
+</div>
 <div class="header-outer">
     <div class="header">
         <?php if ($user_logged) { ?>
-            <div class="header-profile"></div>
+            <div class="header__profile">
+                <?php if (isset($user) && $user->getImage() != "") { ?>
+                    <div class="header__user-profile" style="background-image:url('/public/uploads/<?php echo $user->getImage(); ?>')"></div>
+                <?php } ?>
+            </div>
             <div class="header-icons">
                 <a href="/" class="header__link">
                     <div class="header__icon">

@@ -36,7 +36,7 @@ class QuizController extends Controller
 
         $this->render('quiz', [
             'title'         => 'Quiz - ' . $quiz->getName(),
-            'scripts'       => $this->loadScripts(['main-quiz']),
+            'scripts'       => $this->loadScripts(['main-quiz', 'header']),
             'styles'        => $this->loadStyles(['style']),
             'user_logged'   => $logged_user,
             'user'          => $user ?? null,
@@ -69,7 +69,7 @@ class QuizController extends Controller
 
         $this->render('quizes', [
             'title'         => 'Quiz - Twoje Quizy',
-            'scripts'       => $this->loadScripts(['quiz-edit']),
+            'scripts'       => $this->loadScripts(['quiz-edit', 'header']),
             'styles'        => $this->loadStyles(['style']),
             'user_logged'   => true,
             'user'          => $user ?? null,
@@ -84,7 +84,7 @@ class QuizController extends Controller
         $user = $userRepository->getUserByUid($this->session->getLoggedUid());
         $this->render('new-quiz', [
             'title'         => 'Quiz - Nowy Quiz',
-            'scripts'       => $this->loadScripts(['quiz-creator']),
+            'scripts'       => $this->loadScripts(['quiz-creator', 'header']),
             'styles'        => $this->loadStyles(['style']),
             'user_logged'   => true,
             'user'          => $user ?? null,

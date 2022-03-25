@@ -6,7 +6,7 @@
         <div class="topbar">
             <p class="topbar__heading">Masz kod dostępu?</p>
             <div class="topbar__form">
-                <form action="" class='quickform'>
+                <form action="/game" class='quickform' method="POST">
                     <input placeholder="Wprowadź go tutaj" name="code" type="text" class="quickform__input">
                 </form>
             </div>

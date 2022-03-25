@@ -8,6 +8,7 @@ WORKDIR /var/www/html
 COPY package.json /var/www/html
 
 RUN npm install
+RUN npm i -g nodemon
 # If you are building your code for production
 # RUN npm ci --only=production
 
@@ -15,4 +16,4 @@ RUN npm install
 COPY . /var/www/html
 
 EXPOSE 3000
-CMD [ "node", "./server.js" ]
+CMD [ "node", "./server1.js" ]
